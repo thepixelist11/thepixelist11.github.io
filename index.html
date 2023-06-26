@@ -1,11 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title></title>
-</head>
-<body>
-  <p>Test</p>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tire Readings</title>
+    <script src="./main.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body onload="main()">
+    <div id="topBar">
+      <button id="truckBtn" onclick="changeMenu('truck')">TRUCK</button>
+      <button id="trailerBtn" onclick="changeMenu('trailer')">TRAILER</button>
+    </div>
+    <div id="truckMenu">
+      <select name="tNumber" id="tNumber"></select>
+      <div id="steer">
+        <div id="lSteer">
+          <p class="label1">Left Steer</p>
+          <input type="text" id="lSteerOuter" placeholder="Outer" />
+          <input type="text" id="lSteerMiddle" placeholder="Middle" />
+          <input type="text" id="lSteerInner" placeholder="Inner" />
+          <input type="text" id="lSteerPSI" placeholder="PSI" />
+        </div>
+
+        <input type="number" id="mileage" placeholder="Mileage" />
+
+        <div id="rSteer">
+          <p class="label1">Right Steer</p>
+          <input type="text" id="rSteerOuter" placeholder="Outer" />
+          <input type="text" id="rSteerMiddle" placeholder="Middle" />
+          <input type="text" id="rSteerInner" placeholder="Inner" />
+          <input type="text" id="rSteerPSI" placeholder="PSI" />
+        </div>
+      </div>
+      <div id="fDrive">
+        <div id="lFODrive">
+          <p class="label1">Left FO Drive</p>
+          <input type="text" id="lFODriveOuter" placeholder="Outer" />
+          <input type="text" id="lFODriveMiddle" placeholder="Middle" />
+          <input type="text" id="lFODriveInner" placeholder="Inner" />
+          <input type="text" id="lFODrivePSI" placeholder="PSI" />
+        </div>
+
+        <div id="lFIDrive">
+          <p class="label1">Left FI Drive</p>
+          <input type="text" id="lFIDriveOuter" placeholder="Outer" />
+          <input type="text" id="lFIDriveMiddle" placeholder="Middle" />
+          <input type="text" id="lFIDriveInner" placeholder="Inner" />
+          <input type="text" id="lFIDrivePSI" placeholder="PSI" />
+        </div>
+
+        <div id="rFIDrive">
+          <p class="label1">Right FI Drive</p>
+          <input type="text" id="rFIDriveOuter" placeholder="Outer" />
+          <input type="text" id="rFIDriveMiddle" placeholder="Middle" />
+          <input type="text" id="rFIDriveInner" placeholder="Inner" />
+          <input type="text" id="rFIDrivePSI" placeholder="PSI" />
+        </div>
+
+        <div id="rFODrive">
+          <p class="label1">Right FO Drive</p>
+          <input type="text" id="rFODriveOuter" placeholder="Outer" />
+          <input type="text" id="rFODriveMiddle" placeholder="Middle" />
+          <input type="text" id="rFODriveInner" placeholder="Inner" />
+          <input type="text" id="rFODrivePSI" placeholder="PSI" />
+        </div>
+      </div>
+      <div id="rDrive">
+        <div id="lRODrive">
+          <p class="label1">Left RO Drive</p>
+          <input type="text" id="lRODriveOuter" placeholder="Outer" />
+          <input type="text" id="lRODriveMiddle" placeholder="Middle" />
+          <input type="text" id="lRODriveInner" placeholder="Inner" />
+          <input type="text" id="lRODrivePSI" placeholder="PSI" />
+        </div>
+
+        <div id="lRIDrive">
+          <p class="label1">Left RI Drive</p>
+          <input type="text" id="lRIDriveOuter" placeholder="Outer" />
+          <input type="text" id="lRIDriveMiddle" placeholder="Middle" />
+          <input type="text" id="lRIDriveInner" placeholder="Inner" />
+          <input type="text" id="lRIDrivePSI" placeholder="PSI" />
+        </div>
+
+        <div id="rRIDrive">
+          <p class="label1">Right RI Drive</p>
+          <input type="text" id="rRIDriveOuter" placeholder="Outer" />
+          <input type="text" id="rRIDriveMiddle" placeholder="Middle" />
+          <input type="text" id="rRIDriveInner" placeholder="Inner" />
+          <input type="text" id="rRIDrivePSI" placeholder="PSI" />
+        </div>
+
+        <div id="rFODrive">
+          <p class="label1">Right RO Drive</p>
+          <input type="text" id="rRODriveOuter" placeholder="Outer" />
+          <input type="text" id="rRODriveMiddle" placeholder="Middle" />
+          <input type="text" id="rRODriveInner" placeholder="Inner" />
+          <input type="text" id="rRODrivePSI" placeholder="PSI" />
+        </div>
+      </div>
+
+      <div id="bottom">
+        <button id="confirm" onclick="confirm()">CONFIRM</button>
+        <button id="view" onclick="changeMenu('view')">VIEW ALL</button>
+      </div>
+
+      <div id="data"></div>
+    </div>
+  </body>
 </html>

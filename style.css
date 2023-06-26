@@ -1,0 +1,153 @@
+::placeholder{
+  text-align: center;
+}
+body{
+  margin: 10px;
+}
+#topBar{
+  display: flex;
+  justify-content: center;
+  margin-top: 1vh;
+}
+#trailerBtn{
+  width: 80px;
+  height: 25px;
+  border: 1px solid black;
+  border-radius: 5px;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  font-size: 16px;
+  border-left: 1px solid #aaa;
+  transition: 
+  background-color 0.15s,
+  color 0.15s;
+  background: '#a7a7a7';
+  color: '#555';
+}
+#truckBtn{
+  background: '#e7e7e7';
+  color: '#000';
+  width: 80px;
+  height: 25px;
+  border: 1px solid black;
+  border-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  font-size: 16px;
+  border-right: 1px solid #aaa;
+  transition: 
+  background-color 0.15s,
+  color 0.15s;
+}
+
+#steer{
+  background-color: #efefef;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding: 20px;
+  margin-top: 20px;
+  align-items: center;
+}
+#lSteer{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#rSteer{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#fDrive{
+  background-color: #efefef;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding: 20px;
+  margin-top: 20px;
+}
+#lFODrive{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#lFIDrive{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-right: 30px;
+}
+#rFIDrive{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 30px;
+}
+#rFODrive{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#rDrive{
+  background-color: #efefef;
+  display: flex;
+  justify-content: space-between;
+  margin-left: 100px;
+  margin-right: 100px;
+  padding: 20px;
+  margin-top: 20px;
+}
+#lRODrive{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+#lRIDrive{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-right: 30px;
+}
+#rRIDrive{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-left: 30px;
+}
+#rRODrive{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+#mileage{
+  height: 20px;
+}
+
+#bottom{
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+#confirm{
+  margin-top: 20px;
+  margin-right: 10px;
+}
+#view{
+  margin-top: 20px;
+  margin-left: 10px;
+}
+#tNumber{
+  position: absolute;
+  top: 10px;
+  left: 240px;
+}
+
+input{
+  width: 100px;
+}
