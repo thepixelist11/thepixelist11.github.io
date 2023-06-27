@@ -2,47 +2,9 @@ let truckBtn, trailerBtn, menu;
 let menuState = 'truck';
 let data = {};
 
-const months = [
-  'Jan',
-  'Feb',
-  'Mar',
-  'Apr',
-  'May',
-  'Jun',
-  'Jul',
-  'Aug',
-  'Sep',
-  'Oct',
-  'Nov',
-  'Dec',
-]
+const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-const trucks = [
-  4004, 
-  4005,
-  4123,
-  4129,
-  4130,
-  4132,
-  4133,
-  4134,
-  4135,
-  4136,
-  4137,
-  4138,
-  4139,
-  4140,
-  4141,
-  4142,
-  4143,
-  4144,
-  4146,
-  4147,
-  4148,
-  4149,
-  4150,
-  4151,
-];
+const trucks = [4004, 4005, 4123, 4129, 4130, 4132, 4133, 4134, 4135, 4136, 4137, 4138, 4139, 4140, 4141, 4142, 4143, 4144, 4146, 4147, 4148, 4149, 4150, 4151];
 trucks.map(t => t.toString());
 
 const trailers = [
@@ -164,11 +126,11 @@ function loadMenu() {
 function updateData() {
   const els = document.querySelectorAll('input');
   const vals = [...els].map(e => e.value);
-  data['truck'] = document.getElementById('tNumber').value.toString()
+  data['truck'] = document.getElementById('tNumber').value.toString();
 
   const d = new Date();
   data['date'] = `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
-  
+
   for (let i = 0; i < vals.length; i++) {
     data[els[i].id] = vals[i];
   }
@@ -181,25 +143,29 @@ function confirm() {
     e.value = '';
   });
 
-  download(jsonToCsv(data), `${data.truck} - ${data.date}.csv`, 'text/plain')
+  download(jsonToCsv(data), `${data.truck} - ${data.date}.csv`, 'text/plain');
 }
 
-function jsonToCsv(json){
-  let newJson = JSON.stringify(json)
-  while (typeof(newJson) != 'object') {
-    newJson = JSON.parse(newJson)
+function jsonToCsv(json) {
+  let newJson = JSON.stringify(json);
+  while (typeof newJson != 'object') {
+    newJson = JSON.parse(newJson);
   }
-  
-  return `${newJson.date},${newJson.mileage},${newJson.lSteerPSI},${newJson.lSteerOuter},${newJson.lSteerMiddle},${newJson.lSteerInner},${newJson.lFODrivePSI},${newJson.lFODriveOuter},${newJson.lFODriveMiddle},${newJson.lFODriveInner},${newJson.lFIDrivePSI},${newJson.lFIDriveOuter},${newJson.lFIDriveMiddle},${newJson.lFIDriveInner},${newJson.lRODrivePSI},${newJson.lRODriveOuter},${newJson.lRODriveMiddle},${newJson.lRODriveInner},${newJson.lRIDrivePSI},${newJson.lRIDriveOuter},${newJson.lRIDriveMiddle},${newJson.lRIDriveInner},${newJson.rSteerPSI},${newJson.rSteerOuter},${newJson.rSteerMiddle},${newJson.rSteerInner},${newJson.rFODrivePSI},${newJson.rFODriveOuter},${newJson.rFODriveMiddle},${newJson.rFODriveInner},${newJson.rFIDrivePSI},${newJson.rFIDriveOuter},${newJson.rFIDriveMiddle},${newJson.rFIDriveInner},${newJson.rRODrivePSI},${newJson.rRODriveOuter},${newJson.rRODriveMiddle},${newJson.rRODriveInner},${newJson.rRIDrivePSI},${newJson.rRIDriveOuter},${newJson.rRIDriveMiddle},${newJson.rRIDriveInner},`
+
+  if (menuState == 'truck') {
+    return `${newJson.date},${newJson.mileage},${newJson.lSteerPSI},${newJson.lSteerOuter},${newJson.lSteerMiddle},${newJson.lSteerInner},${newJson.lFODrivePSI},${newJson.lFODriveOuter},${newJson.lFODriveMiddle},${newJson.lFODriveInner},${newJson.lFIDrivePSI},${newJson.lFIDriveOuter},${newJson.lFIDriveMiddle},${newJson.lFIDriveInner},${newJson.lRODrivePSI},${newJson.lRODriveOuter},${newJson.lRODriveMiddle},${newJson.lRODriveInner},${newJson.lRIDrivePSI},${newJson.lRIDriveOuter},${newJson.lRIDriveMiddle},${newJson.lRIDriveInner},${newJson.rSteerPSI},${newJson.rSteerOuter},${newJson.rSteerMiddle},${newJson.rSteerInner},${newJson.rFODrivePSI},${newJson.rFODriveOuter},${newJson.rFODriveMiddle},${newJson.rFODriveInner},${newJson.rFIDrivePSI},${newJson.rFIDriveOuter},${newJson.rFIDriveMiddle},${newJson.rFIDriveInner},${newJson.rRODrivePSI},${newJson.rRODriveOuter},${newJson.rRODriveMiddle},${newJson.rRODriveInner},${newJson.rRIDrivePSI},${newJson.rRIDriveOuter},${newJson.rRIDriveMiddle},${newJson.rRIDriveInner},`;
+  } else {
+    return `${newJson.date},${newJson.lFODrivePSI},${newJson.lFODriveOuter},${newJson.lFODriveMiddle},${newJson.lFODriveInner},${newJson.lFIDrivePSI},${newJson.lFIDriveOuter},${newJson.lFIDriveMiddle},${newJson.lFIDriveInner},${newJson.lRODrivePSI},${newJson.lRODriveOuter},${newJson.lRODriveMiddle},${newJson.lRODriveInner},${newJson.lRIDrivePSI},${newJson.lRIDriveOuter},${newJson.lRIDriveMiddle},${newJson.lRIDriveInner},${newJson.rFODrivePSI},${newJson.rFODriveOuter},${newJson.rFODriveMiddle},${newJson.rFODriveInner},${newJson.rFIDrivePSI},${newJson.rFIDriveOuter},${newJson.rFIDriveMiddle},${newJson.rFIDriveInner},${newJson.rRODrivePSI},${newJson.rRODriveOuter},${newJson.rRODriveMiddle},${newJson.rRODriveInner},${newJson.rRIDrivePSI},${newJson.rRIDriveOuter},${newJson.rRIDriveMiddle},${newJson.rRIDriveInner},`;
+  }
 }
 
 function download(text, name, type) {
-  var a = document.createElement('a')
+  var a = document.createElement('a');
   a.onclick = e => {
-    var file = new Blob([text], {type: type});
+    var file = new Blob([text], { type: type });
     a.href = URL.createObjectURL(file);
     a.download = name;
-  }
+  };
 
   a.click();
 }
