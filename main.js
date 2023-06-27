@@ -2,10 +2,15 @@ let truckBtn, trailerBtn, menu;
 let menuState = 'truck';
 let data = {};
 
-const trucks = [4004, 4005];
+const trucks = [
+  4004, 
+  4005,
+];
 trucks.map(t => t.toString());
 
-const trailers = ['0000'];
+const trailers = [
+  '0000',
+];
 trucks.map(t => t.toString());
 
 function main() {
@@ -70,10 +75,6 @@ function loadMenu() {
     document.getElementById('tNumber').style.position = 'absolute';
     document.getElementById('confirm').style.visibility = 'visible';
     document.getElementById('confirm').style.position = 'static';
-    document.getElementById('view').style.visibility = 'visible';
-    document.getElementById('view').style.position = 'static';
-
-    document.getElementById('data').style.display = 'none';
 
     trucks.forEach(t => {
       const o = document.createElement('option');
@@ -93,10 +94,6 @@ function loadMenu() {
     document.getElementById('tNumber').style.position = 'absolute';
     document.getElementById('confirm').style.visibility = 'visible';
     document.getElementById('confirm').style.position = 'static';
-    document.getElementById('view').style.visibility = 'visible';
-    document.getElementById('view').style.position = 'static';
-
-    document.getElementById('data').style.display = 'none';
 
     trailers.forEach(t => {
       const o = document.createElement('option');
@@ -104,45 +101,13 @@ function loadMenu() {
       o.innerHTML = t;
       dropdown.appendChild(o);
     });
-  } else {
-    document.getElementById('steer').style.visibility = 'hidden';
-    document.getElementById('steer').style.position = 'absolute';
-    document.getElementById('fDrive').style.visibility = 'hidden';
-    document.getElementById('fDrive').style.position = 'absolute';
-    document.getElementById('rDrive').style.visibility = 'hidden';
-    document.getElementById('rDrive').style.position = 'absolute';
-
-    document.getElementById('tNumber').style.visibility = 'hidden';
-    document.getElementById('tNumber').style.position = 'absolute';
-    document.getElementById('confirm').style.visibility = 'hidden';
-    document.getElementById('confirm').style.position = 'absolute';
-    document.getElementById('view').style.visibility = 'hidden';
-    document.getElementById('view').style.position = 'absolute';
-
-    updateData();
-    document.getElementById('data').style.display = 'inline';
-
-    const text = document.getElementById('data');
-    const nodes = [...text.childNodes];
-    totalChildren = nodes.length;
-    for (let i = 0; i < totalChildren; i++) {
-      text.removeChild(nodes[i]);
-    }
-
-    localStorage.length;
-    for (const e in data) {
-      const t = document.createElement('p');
-      t.innerHTML = `${e}: ${data[e]}`;
-      text.appendChild(t);
-    }
   }
 }
 
 function updateData() {
-  data['truck'] = document.getElementById('tNumber').value.toString()
-
   const els = document.querySelectorAll('input');
   const vals = [...els].map(e => e.value);
+  data['truck'] = document.getElementById('tNumber').value.toString()
 
   const d = new Date();
   data['date'] = `${d.getDate()}/${d.getMonth().toString().length < 2 ? '0' + d.getMonth() : d.getMonth()}/${d.getFullYear().toString().substring(2)}`;
@@ -158,4 +123,26 @@ function confirm() {
   document.querySelectorAll('input').forEach(e => {
     e.value = '';
   });
+
+  download('', `${data.truck}.csv`, 'text/plain')
+}
+
+// TODO: Finish this
+function jsonToCsv(json){
+  let newJson = JSON.stringify(json)
+  while (typeof(newJson) != 'object') {
+    newJson = JSON.parse(newJson)
+  }
+  return newJson
+}
+
+function download(text, name, type) {
+  var a = document.createElement('a')
+  a.onclick = e => {
+    var file = new Blob([text], {type: type});
+    a.href = URL.createObjectURL(file);
+    a.download = name;
+  }
+
+  a.click();
 }
