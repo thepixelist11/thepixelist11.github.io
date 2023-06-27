@@ -42,13 +42,10 @@ body{
 
 #steer{
   background-color: #efefef;
-
-  background: red;
-
   display: flex;
   justify-content: space-between;
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 70px;
+  margin-right: 70px;
   padding: 20px;
   margin-top: 20px;
   align-items: center;
@@ -68,8 +65,8 @@ body{
   background-color: #efefef;
   display: flex;
   justify-content: space-between;
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 70px;
+  margin-right: 70px;
   padding: 20px;
   margin-top: 20px;
   border-radius: 10px;
@@ -101,8 +98,8 @@ body{
   background-color: #efefef;
   display: flex;
   justify-content: space-between;
-  margin-left: 100px;
-  margin-right: 100px;
+  margin-left: 70px;
+  margin-right: 70px;
   padding: 20px;
   margin-top: 20px;
   border-radius: 10px;
@@ -151,7 +148,7 @@ body{
 #tNumber{
   position: absolute;
   top: 15px;
-  left: 175px;
+  left: 20px;
 }
 .inputClass{
   width: 70px;

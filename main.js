@@ -2,14 +2,71 @@ let truckBtn, trailerBtn, menu;
 let menuState = 'truck';
 let data = {};
 
+const months = [
+  'Jan',
+  'Feb',
+  'Mar',
+  'Apr',
+  'May',
+  'Jun',
+  'Jul',
+  'Aug',
+  'Sep',
+  'Oct',
+  'Nov',
+  'Dec',
+]
+
 const trucks = [
   4004, 
   4005,
+  4123,
+  4129,
+  4130,
+  4132,
+  4133,
+  4134,
+  4135,
+  4136,
+  4137,
+  4138,
+  4139,
+  4140,
+  4141,
+  4142,
+  4143,
+  4144,
+  4146,
+  4147,
+  4148,
+  4149,
+  4150,
+  4151,
 ];
 trucks.map(t => t.toString());
 
 const trailers = [
-  '0000',
+  '7301',
+  '7322',
+  '7323',
+  '7324',
+  '7325',
+  '7326',
+  '7327',
+  '7328',
+  '7329',
+  '7330',
+  '7331',
+  '7332',
+  '7333',
+  '7334',
+  '7335',
+  '7336',
+  '7337',
+  '7338',
+  '7339',
+  '7340',
+  '7341',
 ];
 trucks.map(t => t.toString());
 
@@ -110,7 +167,7 @@ function updateData() {
   data['truck'] = document.getElementById('tNumber').value.toString()
 
   const d = new Date();
-  data['date'] = `${d.getDate()}/${d.getMonth().toString().length < 2 ? '0' + d.getMonth() : d.getMonth()}/${d.getFullYear().toString().substring(2)}`;
+  data['date'] = `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
   
   for (let i = 0; i < vals.length; i++) {
     data[els[i].id] = vals[i];
@@ -124,16 +181,16 @@ function confirm() {
     e.value = '';
   });
 
-  download('', `${data.truck}.csv`, 'text/plain')
+  download(jsonToCsv(data), `${data.truck} - ${data.date}.csv`, 'text/plain')
 }
 
-// TODO: Finish this
 function jsonToCsv(json){
   let newJson = JSON.stringify(json)
   while (typeof(newJson) != 'object') {
     newJson = JSON.parse(newJson)
   }
-  return newJson
+  
+  return `${newJson.date},${newJson.mileage},${newJson.lSteerPSI},${newJson.lSteerOuter},${newJson.lSteerMiddle},${newJson.lSteerInner},${newJson.lFODrivePSI},${newJson.lFODriveOuter},${newJson.lFODriveMiddle},${newJson.lFODriveInner},${newJson.lFIDrivePSI},${newJson.lFIDriveOuter},${newJson.lFIDriveMiddle},${newJson.lFIDriveInner},${newJson.lRODrivePSI},${newJson.lRODriveOuter},${newJson.lRODriveMiddle},${newJson.lRODriveInner},${newJson.lRIDrivePSI},${newJson.lRIDriveOuter},${newJson.lRIDriveMiddle},${newJson.lRIDriveInner},${newJson.rSteerPSI},${newJson.rSteerOuter},${newJson.rSteerMiddle},${newJson.rSteerInner},${newJson.rFODrivePSI},${newJson.rFODriveOuter},${newJson.rFODriveMiddle},${newJson.rFODriveInner},${newJson.rFIDrivePSI},${newJson.rFIDriveOuter},${newJson.rFIDriveMiddle},${newJson.rFIDriveInner},${newJson.rRODrivePSI},${newJson.rRODriveOuter},${newJson.rRODriveMiddle},${newJson.rRODriveInner},${newJson.rRIDrivePSI},${newJson.rRIDriveOuter},${newJson.rRIDriveMiddle},${newJson.rRIDriveInner},`
 }
 
 function download(text, name, type) {
