@@ -123,6 +123,12 @@ function loadMenu() {
       dropdown.appendChild(o);
     });
   }
+  for (let i = 0; i < document.getElementById('tNumber').children.length; i++) {
+    const c = [...document.getElementById('tNumber').children][i];
+    if (c.innerHTML[c.innerHTML.length - 1] != '*' && savedNums.includes(c.innerHTML.substring(0, 4))) {
+      c.innerHTML = c.innerHTML.concat('*');
+    }
+  }
 }
 
 function updateData() {
@@ -159,8 +165,14 @@ function confirm() {
         break;
       }
     }
-    splitData.splice(splitData.length - 2, 1)
-    saveData = splitData.join('\n')
+    splitData.splice(splitData.length - 2, 1);
+    saveData = splitData.join('\n');
+  }
+  for (let i = 0; i < document.getElementById('tNumber').children.length; i++) {
+    const c = [...document.getElementById('tNumber').children][i];
+    if (c.innerHTML[c.innerHTML.length - 1] != '*' && savedNums.includes(c.innerHTML.substring(0, 4))) {
+      c.innerHTML = c.innerHTML.concat('*');
+    }
   }
 }
 
