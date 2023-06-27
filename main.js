@@ -201,5 +201,8 @@ function download(text, name, type) {
 }
 
 function save() {
+  if(saveData.length < 1){
+    confirm()
+  }
   download(saveData, `${data.date}.csv`, 'text/plain');
 }
