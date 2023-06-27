@@ -204,5 +204,10 @@ function save() {
   if(saveData.length < 1){
     confirm()
   }
+  if(!savedNums.includes(document.getElementById('tNumber').value)){
+    if(!window.prompt(`The ${document.getElementById('tNumber').value[0] == '7' ? 'trailer' : 'truck'} you are editing is not currently saved. If you want to save changes made to this ${document.getElementById('tNumber').value[0] == '7' ? 'trailer' : 'truck'}, please press confirm before saving. Are you sure you want to continue?`)){
+      return
+    }
+  }
   download(saveData, `${data.date}.csv`, 'text/plain');
 }
