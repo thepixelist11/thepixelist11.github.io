@@ -42,6 +42,9 @@ body{
 
 #steer{
   background-color: #efefef;
+
+  background: red;
+
   display: flex;
   justify-content: space-between;
   margin-left: 100px;
