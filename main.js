@@ -1,6 +1,8 @@
 let truckBtn, trailerBtn, menu;
 let menuState = 'truck';
 let data = {};
+let saveData = '';
+let savedNums = [];
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -143,7 +145,23 @@ function confirm() {
     e.value = '';
   });
 
-  download(jsonToCsv(data), `${data.truck} - ${data.date}.csv`, 'text/plain');
+  if (!savedNums.includes(document.getElementById('tNumber').value)) {
+    savedNums.push(document.getElementById('tNumber').value);
+    saveData = saveData.concat(`[${savedNums[savedNums.length - 1]}],` + jsonToCsv(data) + '\n');
+  } else {
+    let splitData = saveData.split('\n');
+    for (let i = 0; i < splitData.length; i++) {
+      if (document.getElementById('tNumber').value == savedNums[i]) {
+        savedNums.splice(i, 1);
+        splitData.splice(i, 1);
+        savedNums.push(document.getElementById('tNumber').value);
+        splitData.push(`[${savedNums[savedNums.length - 1]}],` + jsonToCsv(data) + '\n');
+        break;
+      }
+    }
+    splitData.splice(splitData.length - 2, 1)
+    saveData = splitData.join('\n')
+  }
 }
 
 function jsonToCsv(json) {
@@ -168,4 +186,8 @@ function download(text, name, type) {
   };
 
   a.click();
+}
+
+function save() {
+  download(saveData, `${data.date}.csv`, 'text/plain');
 }

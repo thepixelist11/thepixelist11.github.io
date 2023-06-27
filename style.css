@@ -150,6 +150,10 @@ body{
   top: 15px;
   left: 20px;
 }
+#save{
+  margin-top: 20px;
+  margin-right: 10px;
+}
 .inputClass{
   width: 70px;
 }
