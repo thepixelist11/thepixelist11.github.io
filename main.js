@@ -201,13 +201,80 @@ function download(text, name, type) {
 }
 
 function save() {
-  if(saveData.length < 1){
-    confirm()
+  if (saveData.length < 1) {
+    confirm();
   }
-  if(!savedNums.includes(document.getElementById('tNumber').value)){
-    if(!window.confirm(`The ${document.getElementById('tNumber').value[0] == '7' ? 'trailer' : 'truck'} you are editing is not currently saved. If you want to save changes made to this ${document.getElementById('tNumber').value[0] == '7' ? 'trailer' : 'truck'}, please press confirm before saving. Are you sure you want to continue?`)){
-      return
+  if (!savedNums.includes(document.getElementById('tNumber').value)) {
+    if (
+      !window.confirm(
+        `The ${
+          document.getElementById('tNumber').value[0] == '7' ? 'trailer' : 'truck'
+        } you are editing is not currently saved. If you want to save changes made to this ${
+          document.getElementById('tNumber').value[0] == '7' ? 'trailer' : 'truck'
+        }, please press confirm before saving. Are you sure you want to continue?`
+      )
+    ) {
+      return;
     }
   }
   download(saveData, `${data.date}.csv`, 'text/plain');
+}
+
+function loadData() {
+  saveData = ''
+  data = {}
+  for (let j = 0; j < trucks.length; j++) {
+    let t = JSON.parse(localStorage.getItem(trucks[j]));
+    if (!t) {
+      continue;
+    }
+    let vals = [];
+    for (const e in t) {
+      vals.push(t[e]);
+    }
+    console.log(t)
+    data['truck'] = t.truck
+    const d = new Date();
+    data['date'] = `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+    let i = 0;
+    for (const e in t) {
+      data[e] = vals[i];
+      i++;
+    }
+    savedNums.push(t.truck);
+    saveData = saveData.concat(`[${savedNums[savedNums.length - 1]}],` + jsonToCsv(data) + '\n');
+    for (let i = 0; i < document.getElementById('tNumber').children.length; i++) {
+      const c = [...document.getElementById('tNumber').children][i];
+      if (c.innerHTML[c.innerHTML.length - 1] != '*' && savedNums.includes(c.innerHTML.substring(0, 4))) {
+        c.innerHTML = c.innerHTML.concat('*');
+      }
+    }
+  }
+  for (let j = 0; j < trailers.length; j++) {
+    let t = JSON.parse(localStorage.getItem(trailers[j]));
+    if (!t) {
+      continue;
+    }
+    let vals = [];
+    for (const e in t) {
+      vals.push(t[e]);
+    }
+    data['truck'] = t.truck;
+    const d = new Date();
+    data['date'] = `${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+    let i = 0;
+    for (const e in t) {
+      data[e] = vals[i];
+      i++;
+    }
+    savedNums.push(t.truck);
+    saveData = saveData.concat(`[${savedNums[savedNums.length - 1]}],` + jsonToCsv(data) + '\n');
+    for (let i = 0; i < document.getElementById('tNumber').children.length; i++) {
+      const c = [...document.getElementById('tNumber').children][i];
+      if (c.innerHTML[c.innerHTML.length - 1] != '*' && savedNums.includes(c.innerHTML.substring(0, 4))) {
+        c.innerHTML = c.innerHTML.concat('*');
+      }
+    }
+  }
+  window.alert('Data successfully recovered. \n' + saveData)
 }

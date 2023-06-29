@@ -154,6 +154,11 @@ body{
   margin-top: 20px;
   margin-right: 10px;
 }
+#recover{
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
 .inputClass{
   width: 70px;
 }
