@@ -218,6 +218,7 @@ function save() {
     }
   }
   download(saveData, `${data.date}.csv`, 'text/plain');
+  localStorage.clear()
 }
 
 function loadData() {
