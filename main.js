@@ -146,11 +146,17 @@ function updateData() {
 
 function confirm() {
   updateData();
+  //Save data to local storage as JSON
   localStorage.setItem(document.getElementById('tNumber').value, JSON.stringify(data));
+  //clears inputs
   document.querySelectorAll('input').forEach(e => {
     e.value = '';
   });
-
+  
+  //if the current truck/trailer hasnt been saved in the
+  //current session, concatenate it with saveData. otherwise,
+  //find the location in the local storage where the selected
+  //truck/trailer is stored and teplace it with the current data
   if (!savedNums.includes(document.getElementById('tNumber').value)) {
     savedNums.push(document.getElementById('tNumber').value);
     saveData = saveData.concat(`[${savedNums[savedNums.length - 1]}],` + jsonToCsv(data) + '\n');
@@ -168,14 +174,15 @@ function confirm() {
     splitData.splice(splitData.length - 2, 1);
     saveData = splitData.join('\n');
   }
+  //Add an asterisk to all saved options in the dropdown menu.
   for (let i = 0; i < document.getElementById('tNumber').children.length; i++) {
     const c = [...document.getElementById('tNumber').children][i];
     if (c.innerHTML[c.innerHTML.length - 1] != '*' && savedNums.includes(c.innerHTML.substring(0, 4))) {
       c.innerHTML = c.innerHTML.concat('*');
-    }
   }
 }
 
+//Converts JSON to .csv formatted for the tire data excel file
 function jsonToCsv(json) {
   let newJson = JSON.stringify(json);
   while (typeof newJson != 'object') {
@@ -189,6 +196,7 @@ function jsonToCsv(json) {
   }
 }
 
+//creates a .csv file and runs the click event on the a element
 function download(text, name, type) {
   var a = document.createElement('a');
   a.onclick = e => {
@@ -200,6 +208,7 @@ function download(text, name, type) {
   a.click();
 }
 
+//Downloads the saveData as a .csv file
 function save() {
   if (saveData.length < 1) {
     confirm();
