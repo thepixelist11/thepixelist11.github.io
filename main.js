@@ -179,6 +179,7 @@ function confirm() {
     const c = [...document.getElementById('tNumber').children][i];
     if (c.innerHTML[c.innerHTML.length - 1] != '*' && savedNums.includes(c.innerHTML.substring(0, 4))) {
       c.innerHTML = c.innerHTML.concat('*');
+    }
   }
 }
 
