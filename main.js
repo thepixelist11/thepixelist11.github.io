@@ -289,3 +289,18 @@ function loadData() {
   }
   window.alert('Data successfully recovered. \n' + saveData)
 }
+
+function getOdometer(token){
+  const options = {
+    method: 'GET',
+    headers: {
+      accept: 'application/json',
+      authorization: `Bearer ${token}`
+    }
+  };
+  
+  fetch('https://api.samsara.com/fleet/vehicles/stats/feed?types=obdOdometerMeters,gpsOdometerMeters', options)
+  .then(response => response.json())
+  .then(response => console.log(response))
+  .catch(err => console.error(err));
+}
