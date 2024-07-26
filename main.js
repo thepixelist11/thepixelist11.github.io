@@ -152,7 +152,7 @@ function confirm() {
   document.querySelectorAll('input').forEach(e => {
     e.value = '';
   });
-  
+
   //if the current truck/trailer hasnt been saved in the
   //current session, concatenate it with saveData. otherwise,
   //find the location in the local storage where the selected
@@ -217,10 +217,8 @@ function save() {
   if (!savedNums.includes(document.getElementById('tNumber').value)) {
     if (
       !window.confirm(
-        `The ${
-          document.getElementById('tNumber').value[0] == '7' ? 'trailer' : 'truck'
-        } you are editing is not currently saved. If you want to save changes made to this ${
-          document.getElementById('tNumber').value[0] == '7' ? 'trailer' : 'truck'
+        `The ${document.getElementById('tNumber').value[0] == '7' ? 'trailer' : 'truck'
+        } you are editing is not currently saved. If you want to save changes made to this ${document.getElementById('tNumber').value[0] == '7' ? 'trailer' : 'truck'
         }, please press confirm before saving. Are you sure you want to continue?`
       )
     ) {
