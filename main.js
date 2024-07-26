@@ -226,7 +226,9 @@ function save() {
     }
   }
   download(saveData, `${data.date}.csv`, 'text/plain');
-  localStorage.clear()
+  if (window.confirm('Clear saved data?')) {
+    localStorage.clear();
+  }
 }
 
 function loadData() {
